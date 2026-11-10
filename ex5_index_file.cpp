@@ -18,8 +18,7 @@ fs::path metadataDirectory(const fs::path& root) {
 
 // TODO: return root/.minigit/index.txt. Reuse metadataDirectory(root).
 fs::path indexFile(const fs::path& root) {
-    (void)root;
-    return {};   // replace this line
+    return metadataDirectory(root) / "index.txt";
 }
 
 int main() {
@@ -29,6 +28,8 @@ int main() {
     check(indexFile(root).parent_path() == metadataDirectory(root), "index file is inside .minigit");
 
     // TODO: add one check of your own for the root "course/team/repo".
+    const fs::path nestedRoot = "course/team/repo";
+    check(indexFile(nestedRoot) == nestedRoot / ".minigit" / "index.txt", "index file for course/team/repo");
 
     return failures == 0 ? 0 : 1;
 }
