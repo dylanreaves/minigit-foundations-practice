@@ -36,9 +36,7 @@ private:
 // TODO: replace each body.
 
 // Hint: use a member initializer list:  : root_(root) { }
-RepoLayout::RepoLayout(const fs::path& root) {
-    (void)root;
-}
+RepoLayout::RepoLayout(const fs::path& root) : root_(root) {}
 
 // Hint: return the member variable.
 const fs::path& RepoLayout::root() const {
@@ -47,12 +45,12 @@ const fs::path& RepoLayout::root() const {
 
 // Hint: same as HW8, but use root_ instead of a parameter.
 fs::path RepoLayout::metadataDirectory() const {
-    return {};
+    return root_ / ".minigit";
 }
 
 // Hint: reuse metadataDirectory().
 fs::path RepoLayout::headFile() const {
-    return {};
+    return metadataDirectory() / "HEAD";
 }
 
 // ---------------------------------------------------------------------
