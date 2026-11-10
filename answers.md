@@ -50,3 +50,23 @@ std::filesystem::path headFile(const std::filesystem::path& root) {
     return metadataDirectory(root) / "HEAD";
 }
 ```
+
+## Exercise 4 — Complete the save function
+
+The four blanks are (1) `!file.parent_path().empty()`, (2) `create_directories`, (3) `!output`, and (4) `output.good()`.
+
+```cpp
+bool save(const std::filesystem::path& file, const std::string& text) {
+    if (!file.parent_path().empty()) {
+        std::filesystem::create_directories(file.parent_path());
+    }
+    std::ofstream output(file);
+    if (!output) {
+        return false;
+    }
+    output << text;
+    return output.good();
+}
+```
+
+Here `ofstream` closes the file automatically when it goes out of scope. For production code, I would also handle filesystem exceptions or use the `std::error_code` overload of `create_directories` so folder-creation failures can return `false` rather than throw.
