@@ -4,7 +4,7 @@
 
 I predicted the following before running the verification program:
 
-| Item | Prediction | Verified on Linux |
+| Item | Prediction | Verified on Windows |
 | --- | --- | --- |
 | a | `repo/.minigit/HEAD` | `repo/.minigit/HEAD` |
 | b | `/HEAD` | `/HEAD` |
@@ -13,7 +13,7 @@ I predicted the following before running the verification program:
 | e | `1` | `1` |
 | f | `.txt` | `.txt` |
 
-All six predictions matched the output of `ex1_verify.cpp`. In (b), the right-hand operand begins at the root, so it replaces `repo` instead of being appended to it. The test was run on Linux as required by the question.
+I predicted the output assuming Linux, as instructed, and verified the results using Visual Studio on Windows. All six outputs matched my predictions.
 
 ## Exercise 2 — Fix the lost newlines
 

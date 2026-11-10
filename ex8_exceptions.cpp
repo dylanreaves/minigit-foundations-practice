@@ -44,7 +44,7 @@ std::string readOrDefault(const fs::path& file) {
     try {
         return readOrThrow(file);
     } catch (const std::runtime_error& error) {
-        std::cout << "Error: " << error.what() << '\n';
+        std::cout << "Sorry: " << error.what() << '\n';
         return "";
     }
 }
