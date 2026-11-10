@@ -35,3 +35,18 @@ std::string readAll(const std::filesystem::path& file) {
 ```
 
 This version needs `<fstream>`, `<sstream>`, and `<stdexcept>`. Binary mode avoids newline translation when the goal is to preserve exact bytes.
+
+## Exercise 3 — Fix the two path bugs
+
+**Bug 1:** `root.string() + "/.minigit"` manually constructs a platform-specific path using strings, which can produce mixed separators and defeats portable path construction. **Fix:** use the specific `/` operator on paths.
+
+**Bug 2:** `metadataDirectory(root) / "/HEAD"` has a rooted right-hand operand. On Linux, it discards the metadata directory and produces `/HEAD`. **Fix:** remove the leading slash.
+
+```cpp
+std::filesystem::path metadataDirectory(const std::filesystem::path& root) {
+    return root / ".minigit";
+}
+std::filesystem::path headFile(const std::filesystem::path& root) {
+    return metadataDirectory(root) / "HEAD";
+}
+```
